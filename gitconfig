@@ -1,0 +1,31 @@
+[user]
+	name = Tommi Carleman
+	email = me@tommcarleman.net
+[github]
+	user = tommica
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+
+[color "branch"]
+	current = yellow reverse
+	remote = green bold
+	local = blue bold
+
+[color "diff"]
+	meta = blue bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[push]
+	default = current
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
