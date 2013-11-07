@@ -121,14 +121,15 @@ set foldcolumn=1
 syntax enable 
 set nocursorcolumn
 set nocursorline
-syntax sync minlines=256
+set synmaxcol=256
 
 try
-    colorscheme noctu
+    colorscheme jellybeans
 catch
 endtry
 
 set background=dark
+
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -136,6 +137,7 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
+    colorscheme desert256
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
