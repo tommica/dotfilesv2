@@ -36,6 +36,7 @@ plugins=(nvm-zsh git)
 
 # Some custom aliases & functions
 alias l='ls -lah'
+alias gvimr='gvim --remote'
 function server() {
   local port="${1:-8000}"
   xdg-open "http://localhost:${port}/"
@@ -51,6 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:~/bin:/home/users/tommicarleman/.gem/ruby/1.8/bin
+export NODE_PATH=$NODE_PATH:/home/lubuntu/.nvm/v0.11.6/lib/node_modules
 
 
 # Enable node/npm

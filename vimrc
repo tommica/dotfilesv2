@@ -120,7 +120,7 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable 
 set nocursorcolumn
-set nocursorline
+set cursorline
 set synmaxcol=256
 
 try
@@ -137,7 +137,7 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    colorscheme desert256
+    colorscheme solarized
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -226,6 +226,7 @@ nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 " Extra
 set pastetoggle=<F2>
 nmap <F2> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -345,6 +346,9 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+" Lightline
+let g:lightline = { 'colorscheme': 'wombat', }
 
 
 
