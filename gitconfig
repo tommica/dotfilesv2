@@ -20,6 +20,9 @@
 	old = red bold
 	new = green bold
 
+[merge]
+    tool = meld
+
 [push]
 	default = current
 

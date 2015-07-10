@@ -51,7 +51,7 @@ function pz() {
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:~/bin:/home/users/tommicarleman/.gem/ruby/1.8/bin
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:~/bin:/home/users/tommicarleman/.gem/ruby/1.8/bin:~/.composer/vendor/bin
 export NODE_PATH=$NODE_PATH:/home/lubuntu/.nvm/v0.11.6/lib/node_modules
 
 
@@ -65,3 +65,6 @@ if [ "x$TERM" = "xxterm" ]
 then
     export TERM="xterm-256color"
 fi
+
+alias rscp='rsync -aP'
+alias rsmv='rsync -aP --remove-source-files'
