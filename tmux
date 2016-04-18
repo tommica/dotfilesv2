@@ -1,90 +1,175 @@
-# SETTINGS                                                                     {{{
-# --------------------------------------------------------------------------------
-# Set TERM
-set-option -g default-terminal "screen-256color"
-set-option -g default-shell /bin/zsh
+# shell
+set -g default-command /bin/zsh
+set -g default-shell /bin/zsh
 
-# Set terminal window title
-set-option -g set-titles on
-set-option -g set-titles-string '#S (#W)'
 
-# Start indices on correct side of keyboard
-set-option -g base-index 1
+# start with window 1 (instead of 0)
+set -g base-index 1
 
-# Allow faster command sequences
-set-option -s escape-time 0
 
-# Use vi-like status and mode keys
-set-option -g status-keys vi
-set-option -g mode-keys vi
+# start with pane 1
+set -g pane-base-index 1
 
-# Keep messages on screen longer
-set-option -g display-time 2000
 
-# Don't show a message for any activity type
+# screen mode
+set -g default-terminal "screen-256color"
+
+
+# source config file
+bind r source-file ~/.tmux.conf
+
+
+# history
+set -g history-limit 4096
+
+
+# allow terminal scrolling
+set-option -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+# use vi mode
+setw -g mode-keys vi
+set -g status-keys vi
+setw -g utf8 on
+# use mouse in copy mode
+setw -g mode-mouse on
+
+
+# tmux-zoom.sh
+bind C-z run "tmux-zoom.sh"
+
+# easy-to-remember split pane commands
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# with mouse (click on pretty little boxes)
+set -g mouse-select-window on
+
+# colon :
+bind : command-prompt
+
+# panes
+set -g mouse-select-pane on
+set -g pane-border-fg black
+set -g pane-active-border-fg brightred
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+
+# moving between panes with vim movement keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# status line
+set -g status-utf8 on
+set -g status-justify left
+set -g status-bg default
+set -g status-fg colour12
+set -g status-interval 2
+
+
+# messaging
+set -g message-fg black
+set -g message-bg yellow
+set -g message-command-fg blue
+set -g message-command-bg black
+
+
+#window mode
+setw -g mode-bg colour6
+setw -g mode-fg colour0
+
+
+# window status
+#setw -g window-status-format " #F#I:#W#F "
+#setw -g window-status-current-format " #F#I:#W#F "
+setw -g window-status-format "#[fg=magenta]#[bg=black] #I #[bg=cyan]#[fg=colour8] #W "
+setw -g window-status-current-format "#[bg=brightmagenta]#[fg=colour8] #I #[fg=colour8]#[bg=colour14] #W "
+setw -g window-status-current-bg colour0
+setw -g window-status-current-fg colour11
+setw -g window-status-current-attr dim
+setw -g window-status-bg green
+setw -g window-status-fg black
+setw -g window-status-attr reverse
+
+# Info on left (I don't have a session display for now)
+set -g status-left ''
+
+
+# loud or quiet?
 set-option -g visual-activity off
-set-option -g visual-content off
 set-option -g visual-bell off
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
 
-# Prefs for pre-defined layouts
-set-window-option -g main-pane-height 60
-set-window-option -g main-pane-width 180
 
-# Aggressively resize windows
-set-window-option -g aggressive-resize on
+# tmux clock
+set -g clock-mode-colour blue
 
-# Set window notifications
-# Watch for activity in windows and highlight in status bar
-set-window-option -g monitor-activity on
 
-# }}}
-# APPEARANCE                                                                   {{{
-# --------------------------------------------------------------------------------
-# Status bar
-set-option -g status-left ' #S #[fg=brightyellow,bg=black]#(~/bin/org-clock-current-task.sh)'
-set-option -g status-right '  %a #[fg=brightwhite]%H:%M #[fg=brightblack] %Y/%m/%d #[fg=green]#(osascript ~/bin/com_status.scpt) '
+# some key-binding changes
+bind x kill-pane
+bind X next-layout
+bind Z previous-layout
 
-set-option -g status-left-attr bold
-set-option -g status-left-fg black
-set-option -g status-left-bg green
+#urxvt tab like window switching (-n: no prior escape seq)
+bind -n S-down new-window
+bind -n S-left prev
+bind -n S-right next
+bind -n C-left swap-window -t -1
+bind -n C-right swap-window -t +1
 
-set-option -g status-right-fg brightblack
-set-option -g status-right-bg black
+set -g default-terminal "screen-256color"
 
-set-option -g status-left-length 60
-set-option -g status-right-length 60
+# The modes {
 
-set-window-option -g window-status-format ' (#I) #W '
-set-window-option -g window-status-current-format ' (#I) #W '
+setw -g clock-mode-colour colour135
+setw -g mode-attr bold
+setw -g mode-fg colour196
+setw -g mode-bg colour238
 
-set-window-option -g status-fg white
-set-window-option -g status-bg brightblack
+# }
+# The panes {
 
-# Current window tab
-set-window-option -g window-status-current-fg white
-set-window-option -g window-status-current-bg black
+set -g pane-border-bg colour235
+set -g pane-border-fg colour238
+set -g pane-active-border-bg colour236
+set -g pane-active-border-fg colour51
 
-# Window tab triggered by bell
-set-window-option -g window-status-bell-fg red
-set-window-option -g window-status-bell-bg white
+# }
+# The statusbar {
 
-# Window tab triggered by output
-set-window-option -g window-status-activity-fg blue
-set-window-option -g window-status-activity-bg white
+set -g status-position bottom
+set -g status-bg colour234
+set -g status-fg colour137
+set -g status-attr dim
+set -g status-left ''
+set -g status-right '#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S '
+set -g status-right-length 50
+set -g status-left-length 20
 
-# Window tab triggered by monitor-content command
-set-window-option -g window-status-content-fg green
-set-window-option -g window-status-content-bg white
+setw -g window-status-current-fg colour81
+setw -g window-status-current-bg colour238
+setw -g window-status-current-attr bold
+setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
 
-set-window-option -g mode-fg black
-set-window-option -g mode-bg brightblue
+setw -g window-status-fg colour138
+setw -g window-status-bg colour235
+setw -g window-status-attr none
+setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
 
-set-option -g pane-border-fg black
-set-option -g pane-active-border-fg brightblack
+setw -g window-status-bell-attr bold
+setw -g window-status-bell-fg colour255
+setw -g window-status-bell-bg colour1
 
-set-option -g message-fg white
-set-option -g message-bg red
+# }
+# The messages {
 
-# }}}
-# vim: foldmethod=marker
+set -g message-attr bold
+set -g message-fg colour232
+set -g message-bg colour166
 
+# }

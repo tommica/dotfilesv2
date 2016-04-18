@@ -57,7 +57,7 @@ set nocursorline
 call plug#begin('~/.vim/plugged')
 
 " Theme
-Plug 'altercation/vim-colors-solarized'
+Plug 'notpratheek/vim-luna'
 
 " Trailing whitespace management (:FixWhitespace)
 Plug 'bronson/vim-trailing-whitespace'
@@ -89,7 +89,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Airline
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Ctrlp
 Plug 'kien/ctrlp.vim'
@@ -107,7 +108,7 @@ call plug#end()
 " Set theme
 set background=dark
 try
-    colorscheme solarized
+    colorscheme luna
 catch
 endtry
 
