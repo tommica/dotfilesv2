@@ -52,13 +52,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:~/bin:/home/users/tommicarleman/.gem/ruby/1.8/bin:~/.composer/vendor/bin
-export NODE_PATH=$NODE_PATH:/home/lubuntu/.nvm/v0.11.6/lib/node_modules
-
-
-# Enable node/npm
-if [[ -a  ~/.nvm/nvm.sh ]];then
-  nvm use default
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Turn on 256 color support...
 if [ "x$TERM" = "xxterm" ]

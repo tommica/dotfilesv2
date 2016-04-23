@@ -30,9 +30,6 @@ set-option -g terminal-overrides 'xterm*:smcup@:rmcup@'
 setw -g mode-keys vi
 set -g status-keys vi
 setw -g utf8 on
-# use mouse in copy mode
-setw -g mode-mouse on
-
 
 # tmux-zoom.sh
 bind C-z run "tmux-zoom.sh"
@@ -53,7 +50,6 @@ bind : command-prompt
 set -g mouse-select-pane on
 set -g pane-border-fg black
 set -g pane-active-border-fg brightred
-set -g mouse-select-pane on
 set -g mouse-resize-pane on
 
 # moving between panes with vim movement keys
