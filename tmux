@@ -40,17 +40,17 @@ bind - split-window -v
 unbind '"'
 unbind %
 
-# with mouse (click on pretty little boxes)
-set -g mouse-select-window on
-
 # colon :
 bind : command-prompt
 
 # panes
-set -g mouse-select-pane on
 set -g pane-border-fg black
 set -g pane-active-border-fg brightred
-set -g mouse-resize-pane on
+
+# with mouse (click on pretty little boxes)
+if-shell '[[ $(echo "$(tmux -V | cut -d" " -f2) >= 2.1" | bc) -eq 1 ]]' \
+    'set -g mouse on; bind m set -g mouse on \; display "Mouse ON"; bind M set -g mouse off \; display "Mouse OFF"' \
+    'set -g mode-mouse on; set -g mouse-resize-pane on; set -g mouse-select-pane on; set -g mouse-select-window on; bind m set -g mode-mouse on \; set -g mouse-resize-pane on \; set -g mouse-select-pane on \; set -g mouse-select-window on \; display "Mouse ON"; bind M set -g mode-mouse off \; set -g mouse-resize-pane off \; set -g mouse-select-pane off \; set -g mouse-select-window off \; display "Mouse OFF"'
 
 # moving between panes with vim movement keys
 bind h select-pane -L
