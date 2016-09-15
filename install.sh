@@ -1,28 +1,42 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-echo "initializing submodules"
-git submodule init
-git submodule update
+basedir=$PWD
 
+# Check for oh-my-zsh & zsh
+CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)
+if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
+	printf "Zsh is not installed! Please install zsh first!\n"
+	exit
+fi
+
+if [ ! -n "$ZSH" ]; then
+	ZSH=~/.oh-my-zsh
+fi
+
+if [ -d "$ZSH" ]; then
+	printf "Updating oh-my-zsh\n"
+	cd $ZSH
+	git pull
+else
+	printf "Install oh-my-zsh\n"
+	sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+fi
+
+
+cd $basedir
+# Symlinks
 echo "Deleting the old files"
 rm ~/.vimrc
 rm ~/.vim
-rm ~/.gvimrc
 rm ~/.gitconfig
 rm ~/.gitignore
 rm ~/.tmux.conf
 rm ~/.zshrc
 
 echo "Symlinking files"
-ln -s ~/Github/dotfilesv2/vimrc ~/.vimrc
-ln -s ~/Github/dotfilesv2/vim ~/.vim
-ln -s ~/Github/dotfilesv2/gitconfig ~/.gitconfig
-ln -s ~/Github/dotfilesv2/gitignore ~/.gitignore
-ln -s ~/Github/dotfilesv2/tmux ~/.tmux.conf
-ln -s ~/Github/dotfilesv2/zshrc ~/.zshrc
-
-echo "Updating submodules"
-git submodule foreach git pull origin master #--recurse-submodules
-
-echo "All done."
-
+ln -s "$PWD/vim" ~/.vim
+ln -s "$PWD/vimrc" ~/.vimrc
+ln -s "$PWD/gitconfig" ~/.gitconfig
+ln -s "$PWD/gitignore" ~/.gitignore
+ln -s "$PWD/tmux" ~/.tmux.conf
+ln -s "$PWD/zshrc" ~/.zshrc

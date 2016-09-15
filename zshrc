@@ -47,6 +47,9 @@ function pz() {
   zip -r $1 $2 -x \*_unittest\* \*node_modules\* \*.git\* \*gruntfile.js\* \*package.json\* \*README.md\*
 }
 
+function homestead() {
+    ( cd ~/Homestead && vagrant $* )
+}
 
 source $ZSH/oh-my-zsh.sh
 
