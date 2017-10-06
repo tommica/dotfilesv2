@@ -10,6 +10,8 @@ set nocompatible
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+set shell=zsh
+filetype plugin on
 
 set backspace=indent,eol,start
 
@@ -57,7 +59,7 @@ set nocursorline
 call plug#begin('~/.vim/plugged')
 
 " Theme
-Plug 'notpratheek/vim-luna'
+Plug 'jonathanfilip/vim-lucius'
 
 " Trailing whitespace management (:FixWhitespace)
 Plug 'bronson/vim-trailing-whitespace'
@@ -68,6 +70,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
+Plug 'vimwiki/vimwiki'
 
 " PHP Bundle
 Plug 'arnaud-lb/vim-php-namespace'
@@ -108,7 +111,8 @@ call plug#end()
 " Set theme
 set background=dark
 try
-    colorscheme luna
+    colorscheme lucius
+	LuciusDarkHighContrast
 catch
 endtry
 

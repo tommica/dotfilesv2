@@ -40,3 +40,7 @@ ln -s "$PWD/gitconfig" ~/.gitconfig
 ln -s "$PWD/gitignore" ~/.gitignore
 ln -s "$PWD/tmux" ~/.tmux.conf
 ln -s "$PWD/zshrc" ~/.zshrc
+
+# Plugin update
+echo "Update plugins"
+vim -c PlugClean -c PlugInstall -c qa
