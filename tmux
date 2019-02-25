@@ -2,6 +2,10 @@
 set -g default-command /bin/zsh
 set -g default-shell /bin/zsh
 
+# Fix tmux userspace on osx devices
+# make sure brew install reattach-to-user-namespace
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
 
 # start with window 1 (instead of 0)
 set -g base-index 1
@@ -29,7 +33,7 @@ set-option -g terminal-overrides 'xterm*:smcup@:rmcup@'
 # use vi mode
 setw -g mode-keys vi
 set -g status-keys vi
-setw -g utf8 on
+#setw -g utf8 on
 
 # tmux-zoom.sh
 bind C-z run "tmux-zoom.sh"
@@ -59,7 +63,7 @@ bind k select-pane -U
 bind l select-pane -R
 
 # status line
-set -g status-utf8 on
+#set -g status-utf8 on
 set -g status-justify left
 set -g status-bg default
 set -g status-fg colour12
