@@ -57,7 +57,7 @@ set rnu nu
 set so=999
 
 set mousemodel=popup
-"set t_Co=256
+set t_Co=256
 set cursorline
 set number
 
@@ -76,24 +76,27 @@ Plug 'jonathanfilip/vim-lucius'
 Plug 'bronson/vim-trailing-whitespace'
 
 " HTML bundle
-Plug 'https://github.com/alvan/vim-closetag'
+Plug 'Raimondi/delimitMate'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 Plug 'vimwiki/vimwiki'
 
-" PHP Bundle
-Plug 'arnaud-lb/vim-php-namespace'
-
 " Syntax check
 Plug 'https://github.com/scrooloose/syntastic'
+
+" Improved languages
+Plug 'https://github.com/pangloss/vim-javascript.git'
+Plug 'vim-scripts/PHP-correct-Indenting'
+Plug 'spf13/PIV'
+
 
 " Buffers
 Plug 'bling/vim-bufferline'
 
 " Undo
-Plug 'https://github.com/mbbill/undotree'
+Plug 'sjl/gundo.vim'
 
 " ag
 Plug 'rking/ag.vim'
@@ -112,12 +115,18 @@ Plug 'vim-airline/vim-airline-themes'
 " Ctrlp
 Plug 'kien/ctrlp.vim'
 
-" Phpcomplete
-Plug 'shawncplus/phpcomplete.vim'
-
 " Wordpress.vim
 Plug 'https://github.com/dsawardekar/wordpress.vim'
 
+" Autocomplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
