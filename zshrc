@@ -51,6 +51,10 @@ function homestead() {
     ( cd ~/Homestead && vagrant $* )
 }
 
+function gitlook() {
+	{ find .git/objects/pack/ -name "*.idx"|while read i;do git show-index < "$i"|awk '{print $2}';done;find .git/objects/ -type f|grep -v '/pack/'|awk -F'/' '{print $(NF-1)$NF}'; }|while read o;do git cat-file -p $o;done|grep -E $*
+}
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -71,6 +75,9 @@ alias curlg='curl -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google
 alias wgetclone='wget -m -p -E -k -K -np'
 alias rscp='rsync -aP'
 alias rsmv='rsync -aP --remove-source-files'
+alias grep='grep --color=auto'
+alias biggest="du -h --max-depth=1 | sort -h"
+alias :q="exit"
 if [[ -a ~/.custom_local_rc.sh ]]; then
 	source ~/.custom_local_rc.sh
 fi
