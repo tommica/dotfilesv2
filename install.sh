@@ -9,19 +9,10 @@ if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
 	exit
 fi
 
-if [ ! -n "$ZSH" ]; then
-	ZSH=~/.oh-my-zsh
+if [ ! -d "$HOME/.zsh/pure"]; then
+	printf "Please install sindresorhus/pure"
+	exit
 fi
-
-if [ -d "$ZSH" ]; then
-	printf "Updating oh-my-zsh\n"
-	cd $ZSH
-	git pull
-else
-	printf "Install oh-my-zsh\n"
-	sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-fi
-
 
 cd $basedir
 # Symlinks

@@ -86,10 +86,8 @@ Plug 'vimwiki/vimwiki'
 " Syntax check
 Plug 'https://github.com/scrooloose/syntastic'
 
-" Improved languages
-Plug 'https://github.com/pangloss/vim-javascript.git'
-Plug 'vim-scripts/PHP-correct-Indenting'
-Plug 'spf13/PIV'
+" Code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 " Buffers
